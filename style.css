@@ -1,0 +1,535 @@
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle,
+            #002b5c,
+            #000714 45%,
+            #00020a 100%
+        );
+
+    color: white;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    touch-action: none;
+
+    user-select: none;
+}
+
+
+/* =========================
+   WRAPPER
+========================= */
+
+.game-wrapper {
+
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* =========================
+   GAME
+========================= */
+
+.game-container {
+
+    position: relative;
+
+    width: min(92vw, 520px);
+    height: min(94vh, 900px);
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #001b3c 0%,
+            #000718 40%,
+            #00030d 100%
+        );
+
+    border: 2px solid #009dff;
+
+    box-shadow:
+        0 0 8px #009dff,
+        0 0 25px #006cff,
+        inset 0 0 35px
+        rgba(0, 130, 255, .25);
+}
+
+
+/* =========================
+   CANVAS
+========================= */
+
+canvas {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.title {
+
+    position: absolute;
+
+    top: 8px;
+
+    left: 0;
+
+    width: 100%;
+
+    text-align: center;
+
+    z-index: 5;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    color: #dcefff;
+
+    text-shadow:
+        0 0 5px white,
+        0 0 12px #00aaff,
+        0 0 25px #008cff;
+
+    pointer-events: none;
+}
+
+.title span {
+    color: #ffffff;
+}
+
+
+/* =========================
+   HUD
+========================= */
+
+.hud {
+
+    position: absolute;
+
+    top: 43px;
+
+    left: 15px;
+    right: 15px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    z-index: 5;
+
+    font-family: monospace;
+
+    text-shadow:
+        0 0 8px #00cfff;
+}
+
+.hud small {
+
+    display: block;
+
+    font-size: 8px;
+
+    color: #6fdcff;
+
+    letter-spacing: 1px;
+}
+
+.hud div > div {
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    color: #d9f9ff;
+}
+
+.hud-center {
+
+    text-align: center;
+}
+
+.hud-right {
+
+    text-align: right;
+}
+
+
+/* =========================
+   GAME STATS
+========================= */
+
+.game-stats {
+
+    position: absolute;
+
+    top: 78px;
+
+    left: 15px;
+    right: 15px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    z-index: 6;
+}
+
+.game-stats span {
+
+    color: #d8f8ff;
+
+    font-size: 14px;
+
+    text-shadow:
+        0 0 8px #00aaff;
+}
+
+
+/* =========================
+   PAUSE BUTTON
+========================= */
+
+#pauseBtn {
+
+    width: 35px;
+    height: 30px;
+
+    padding: 0;
+
+    border: 1px solid #00bfff;
+
+    border-radius: 5px;
+
+    background:
+        rgba(0, 70, 150, .35);
+
+    color: white;
+
+    font-size: 13px;
+
+    box-shadow:
+        0 0 8px #008cff;
+
+    cursor: pointer;
+}
+
+#pauseBtn:active {
+    transform: scale(.9);
+}
+
+
+/* =========================
+   OVERLAY
+========================= */
+
+.overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 20;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        rgba(0, 3, 15, .72);
+
+    backdrop-filter:
+        blur(3px);
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================
+   PANEL
+========================= */
+
+.panel {
+
+    width: 82%;
+
+    max-width: 350px;
+
+    padding: 30px 20px;
+
+    text-align: center;
+
+    border: 1px solid #008cff;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0, 55, 120, .35),
+            rgba(0, 5, 20, .9)
+        );
+
+    box-shadow:
+        0 0 20px #006cff,
+        inset 0 0 25px
+        rgba(0, 130, 255, .15);
+}
+
+.panel h1 {
+
+    margin: 8px 0;
+
+    font-size: 32px;
+
+    letter-spacing: 5px;
+
+    color: white;
+
+    text-shadow:
+        0 0 10px #00d9ff,
+        0 0 30px #008cff;
+}
+
+.panel h2 {
+
+    margin: 10px 0;
+
+    font-size: 24px;
+
+    color: #e9fbff;
+
+    text-shadow:
+        0 0 12px #00aaff;
+}
+
+.panel p {
+
+    color: #9ddff5;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   ICON
+========================= */
+
+.snowflake {
+
+    font-size: 55px;
+
+    animation:
+        floatSnow 2s infinite ease-in-out;
+
+    text-shadow:
+        0 0 15px #00cfff,
+        0 0 35px #008cff;
+}
+
+.big-icon {
+
+    font-size: 45px;
+
+    text-shadow:
+        0 0 15px #00cfff,
+        0 0 35px #008cff;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.main-btn,
+.secondary-btn {
+
+    width: 85%;
+
+    padding: 13px 20px;
+
+    margin: 8px auto;
+
+    display: block;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+}
+
+.main-btn {
+
+    border: 1px solid #00d9ff;
+
+    background:
+        linear-gradient(
+            180deg,
+            #008cff,
+            #0045b8
+        );
+
+    color: white;
+
+    box-shadow:
+        0 0 15px #008cff;
+}
+
+.secondary-btn {
+
+    border: 1px solid #0077bb;
+
+    background:
+        rgba(0, 80, 150, .25);
+
+    color: #aeeeff;
+}
+
+.main-btn:active,
+.secondary-btn:active {
+
+    transform: scale(.96);
+}
+
+
+/* =========================
+   SCORES
+========================= */
+
+.final-score {
+
+    font-size: 30px;
+
+    font-family: monospace;
+
+    color: #00d9ff;
+
+    text-shadow:
+        0 0 15px #008cff;
+}
+
+.best-score {
+
+    font-size: 20px;
+
+    font-family: monospace;
+
+    color: #8deaff;
+}
+
+.next-level {
+
+    margin: 15px;
+
+    font-size: 20px;
+
+    color: #00d9ff;
+
+    text-shadow:
+        0 0 12px #008cff;
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes floatSnow {
+
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-10px);
+    }
+}
+
+
+/* =========================
+   SMALL PHONES
+========================= */
+
+@media (max-width: 380px) {
+
+    .game-container {
+
+        width: 92vw;
+        height: 92vh;
+    }
+
+    .title {
+        font-size: 17px;
+    }
+
+    .panel h1 {
+        font-size: 27px;
+    }
+}
+
+
+/* =========================
+   LANDSCAPE
+========================= */
+
+@media (orientation: landscape) {
+
+    .game-container {
+
+        width: min(55vw, 600px);
+
+        height: 94vh;
+    }
+}

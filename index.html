@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width,
+        initial-scale=1.0,
+        maximum-scale=1.0,
+        user-scalable=no">
+
+    <meta name="theme-color" content="#00030d">
+
+    <title>Frost Breakout</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="game-wrapper">
+
+    <div class="game-container">
+
+        <div class="title">
+            Frost Breakout <span>❄</span>
+        </div>
+
+        <div class="hud">
+
+            <div>
+                <small>SCORE</small>
+                <div id="score">000000</div>
+            </div>
+
+            <div class="hud-center">
+                <small>LEVEL</small>
+                <div id="level">1</div>
+            </div>
+
+            <div class="hud-right">
+                <small>BEST</small>
+                <div id="highScore">000000</div>
+            </div>
+
+        </div>
+
+        <div class="game-stats">
+
+            <span>
+                ❤️ <b id="lives">3</b>
+            </span>
+
+            <button id="pauseBtn">
+                ❚❚
+            </button>
+
+        </div>
+
+        <canvas id="gameCanvas"></canvas>
+
+
+        <!-- START SCREEN -->
+
+        <div class="overlay" id="startScreen">
+
+            <div class="panel">
+
+                <div class="snowflake">❄</div>
+
+                <h1>FROST<br>BREAKOUT</h1>
+
+                <p>
+                    Break the ice.<br>
+                    Beat your high score.
+                </p>
+
+                <button class="main-btn"
+                    id="startBtn">
+                    START GAME
+                </button>
+
+                <small>
+                    Drag your finger to move
+                    the paddle
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- PAUSE SCREEN -->
+
+        <div class="overlay hidden"
+            id="pauseScreen">
+
+            <div class="panel">
+
+                <div class="big-icon">
+                    ❚❚
+                </div>
+
+                <h2>GAME PAUSED</h2>
+
+                <button class="main-btn"
+                    id="resumeBtn">
+                    RESUME
+                </button>
+
+                <button class="secondary-btn"
+                    id="restartPauseBtn">
+                    RESTART
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- GAME OVER -->
+
+        <div class="overlay hidden"
+            id="gameOverScreen">
+
+            <div class="panel">
+
+                <div class="big-icon">
+                    💥
+                </div>
+
+                <h2>GAME OVER</h2>
+
+                <p>
+                    Score
+                </p>
+
+                <div class="final-score"
+                    id="finalScore">
+                    000000
+                </div>
+
+                <p>
+                    Best
+                </p>
+
+                <div class="best-score"
+                    id="finalBest">
+                    000000
+                </div>
+
+                <button class="main-btn"
+                    id="restartBtn">
+                    PLAY AGAIN
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- LEVEL COMPLETE -->
+
+        <div class="overlay hidden"
+            id="levelScreen">
+
+            <div class="panel">
+
+                <div class="big-icon">
+                    ❄
+                </div>
+
+                <h2>LEVEL COMPLETE!</h2>
+
+                <p>
+                    Prepare for the next level
+                </p>
+
+                <div class="next-level">
+                    LEVEL <span id="nextLevel">2</span>
+                </div>
+
+                <button class="main-btn"
+                    id="nextBtn">
+                    CONTINUE
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
